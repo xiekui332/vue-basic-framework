@@ -1,33 +1,18 @@
-## 通用弹出框
+## 未关注公众号弹框
 
 ### 使用指南
 ```html
-<button @click="showDialog">打开弹框</button>
-···
-<project-dialog
-  v-show="dialogVisibility"
-  :maskClosable="false"
-  @closeDialog="closeDialog"
-  @onDialogConfirmBtnClick="onDialogConfirmBtnClick">
-  <div slot="header">提示</div>
-  <div slot="body">
-    <p>提示</p>
-    <p>提示</p>
-    <p>提示</p>
-  </div>
-</project-dialog>
+<unconcerned-dialog @onMaskClick="setUnconcernedDialogVisibility" v-if="showUnconcernedDialog"></unconcerned-dialog>
 ```
 
 ```js
-onDialogConfirmBtnClick(close) {
-  console.log('点击了确定按钮');
-  close && close();
+data() {
+  return {
+    showUnconcernedDialog: false
+  };
 },
-showDialog() {
-  this.dialogVisibility = true;
-},
-closeDialog() {
-  this.dialogVisibility = false;
+setUnconcernedDialogVisibility(showUnconcernedDialog) {
+  this.showUnconcernedDialog = !!showUnconcernedDialog;
 }
 ```
 

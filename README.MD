@@ -47,15 +47,24 @@ ps：第一次启动之前或者依赖变化之后，都需要运行 `npm run dl
 - 微信 js-sdk 的 api
 - 静默检测用户是否已关注公众号，未关注会重定向，然后重新获取授权
 - 内置组件（已全局注册）
+
   a. 通用 dialog
+
   b. 通用 loading
+ 
   c. 通用 toast
+  
   d. 通用公众号未关注弹框
 - 内置工具类
+
   a. axios Ajax 请求类
+  
   b. 通用倒计时类
+  
   a. 通用事件管理类
+  
   a. wx 封装类
+  
   a. 其他 Util
   
 ## webpack 配置说明
@@ -154,8 +163,10 @@ ps：第一次启动之前或者依赖变化之后，都需要运行 `npm run dl
   new EventManager().trigger('onUserInfoReady');
   ```
 - static 文件夹
-  js 下面存放一些第三方依赖库，会自动添加到 html 里面，可以数字开头给文件设定添加顺序
-  image 下存放不需要 webpack 处理的图片
+
+     js 下面存放一些第三方依赖库，会自动添加到 html 里面，可以数字开头给文件设定添加顺序
+     
+     image 下存放不需要 webpack 处理的图片
 
 ## 编辑器支持 IDEA
 
