@@ -74,8 +74,10 @@ ps：第一次启动之前或者依赖变化之后，都需要运行 `npm run dl
 
 ## 用法说明
 - dialog
+
   详见[用法说明](./src/components/dialog/README.md)
 - 公众号弹框
+
   详见[用法说明](./src/components/unconcerned-dialog/README.md)
 - toast
   ```js
@@ -86,7 +88,7 @@ ps：第一次启动之前或者依赖变化之后，都需要运行 `npm run dl
   import {mapActions, mapGetters} from 'vuex';
 
   methods: {
-    ...mapActions([ 'setLoading'])
+    ...mapActions(['setLoading'])
   }
 
   // text 提示信息，默认为'加载中···'，选填
@@ -127,12 +129,14 @@ ps：第一次启动之前或者依赖变化之后，都需要运行 `npm run dl
   ```
 - axios
   ```js
-  // hideLoading 是否隐藏 loading，默认为 false，选填
-  // loadingText 提示信息，默认为 '加载中···'，选填
-  // hideToast   请求成功之后是否隐藏 toast，默认为 false，选填
-  // 内部做了处理，返回数据的格式必须为 {status: true, data: {}, msg: 'message'}
+  // hideLoading 本次请求是否隐藏 loading，默认为 false，选填
+  // loadingText 本次请求提示信息，默认为 '加载中···'，选填
+  // hideToast   本次请求请求成功之后是否隐藏 toast，默认为 false，选填
+  // 内部做了处理，返回数据的格式必须为 {status: true | false, data: {}, msg: 'message'}
   this.$http.get(url, {...param, hideLoading: false, loadingText: '', hideToast: false});
   // this.$http.post
+  // this.$http.put
+  // this.$http.delete
   ```
 - 倒计时类
   ```js
@@ -164,9 +168,8 @@ ps：第一次启动之前或者依赖变化之后，都需要运行 `npm run dl
   ```
 - static 文件夹
 
-     js 下面存放一些第三方依赖库，会自动添加到 html 里面，可以数字开头给文件设定添加顺序
-     
-     image 下存放不需要 webpack 处理的图片
+  - js 下面存放一些第三方依赖库，会自动添加到 html 里面，可以数字开头给文件设定添加顺序
+  - image 下存放不需要 webpack 处理的图片
 
 ## 编辑器支持 IDEA
 
