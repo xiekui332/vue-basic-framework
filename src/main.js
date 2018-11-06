@@ -1,47 +1,32 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import routes from './router/router'
-import store from './store/'
-import {routerMode} from './config/env'
-import component from './component';
-// import './config/rem'
-import FastClick from 'fastclick'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store/store';
 
-if ('addEventListener' in document) {
-  document.addEventListener('DOMContentLoaded', function () {
-    FastClick.attach(document.body);
-  }, false);
-}
+import showToast from './components/toast';
+import dialog from './components/dialog/dialog';
+import unconcernedDialog from './components/unconcerned-dialog/unconcerned-dialog';
+import axiosInstance from './utils/axios-instance';
 
-Vue.use(component);
-Vue.use(VueRouter);
-const router = new VueRouter({
-  routes,
-  mode: routerMode,
-  strict: process.env.NODE_ENV !== 'production',
-  scrollBehavior (to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      if (from.meta.keepAlive) {
-        from.meta.savedPosition = document.body.scrollTop;
-      }
-      return {x: 0, y: to.meta.savedPosition || 0}
-    }
-  }
-});
+window.Promise = Promise;
 
-router.beforeEach((to, from, next) => {
-    // console.log('before--', to, from);
-    next();
-});
+Vue.prototype.$toast = showToast;
+Vue.prototype.$http = axiosInstance;
 
-router.afterEach((to, from) => {
-    // console.log('after--', to, from);
-});
+const isDebugMode = process.env.NODE_ENV !== 'production';
 
-new Vue({
+Vue.config.debug = isDebugMode;
+Vue.config.devtools = isDebugMode;
+Vue.config.productionTip = false;
+
+// 全局注册公共组件，打包到 app.js 里面，优化体积
+Vue.component('project-dialog', dialog);
+Vue.component('unconcerned-dialog', unconcernedDialog);
+
+new Vue({  // eslint-disable-line
+  el: '#app',
   router,
   store,
-}).$mount('#app');
-
+  template: '<App/>',
+  components: {App}
+});

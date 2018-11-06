@@ -1,0 +1,4 @@
+/dist/
+/static/
+/.idea/
+/test/unit/coverage/

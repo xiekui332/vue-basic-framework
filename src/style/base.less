@@ -1,0 +1,87 @@
+@import "_variable";
+
+.container {
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-row-center {
+  &:extend(.flex-row);
+  justify-content: center;
+}
+
+.flex-row-between {
+  &:extend(.flex-row);
+  justify-content: space-between;
+}
+
+.flex-row-around {
+  &:extend(.flex-row);
+  justify-content: space-around;
+}
+
+.flex-row-end {
+  &:extend(.flex-row);
+  justify-content: flex-end;
+}
+
+.flex-row-start {
+  &:extend(.flex-row);
+  justify-content: flex-start;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-column-center {
+  &:extend(.flex-column);
+  justify-content: center;
+}
+
+.flex-column-start {
+  &:extend(.flex-column);
+  justify-content: flex-start;
+}
+.flex-column-end {
+  &:extend(.flex-column);
+  justify-content: flex-end;
+}
+.flex-column-around {
+  &:extend(.flex-column);
+  justify-content: space-around;
+}
+
+.flex-column-between {
+  &:extend(.flex-column);
+  justify-content: space-between;
+}
+
+.fixed-bottom-view {
+  &:extend(.flex-row-center);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  .fixed-bottom {
+    &:extend(.flex-row-center);
+    font-size: 15px;
+    color: #1A1A1A;
+  }
+}
+
+.grid-background(@bg-color; @line-color; @width: 12px) {
+  background-color: @bg-color;
+  background-image:
+    linear-gradient(transparent @width - 1px, @line-color @width - 1px, @line-color @width),
+    linear-gradient(90deg, transparent @width - 1px, @line-color @width, @line-color @width);
+  background-size: @width @width;
+}

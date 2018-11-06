@@ -1,49 +1,43 @@
-// see http://vuejs-templates.github.io/webpack for documentation.
-var path = require('path')
+'use strict';
+const path = require('path');
+const glob = require('glob');
+
+const staticFiles = glob.sync(path.resolve(__dirname, '../') + '/static/js/*.js').map(filePath => path.basename(filePath));
 
 module.exports = {
-    build: {
-        env: {
-            NODE_ENV: '"production"'
-        },
-        index: path.resolve(__dirname, '../elm/index.html'),
-        assetsRoot: path.resolve(__dirname, '../elm'),
-        assetsSubDirectory: 'static',
-        assetsPublicPath: '/elm/',
-        productionSourceMap: true,
-        // Surge or Netlify already gzip all static assets for you.
-        // Before setting to `true`, make sure to:
-        // npm install --save-dev compression-webpack-plugin
-        productionGzip: false,
-        productionGzipExtensions: ['js', 'css']
+  common: {
+    staticFiles: staticFiles
+  },
+  dev: {
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+    proxyTable: {
+      '/v1': {
+        target: 'https://******.com',
+        changeOrigin: true
+      }
     },
-    dev: {
-        env: {
-            NODE_ENV: '"development"'
-        },
-        port: 8000,
-        assetsSubDirectory: 'static',
-        assetsPublicPath: '/',
-        context: [ //代理路径
-            '/shopping',
-            '/ugc',
-            '/v1',
-            '/v2',
-            '/v3',
-            '/v4',
-            '/bos',
-            '/member',
-            '/promotion',
-            '/eus',
-            '/payapi',
-            '/img',
-        ],
-        proxypath: 'http://cangdu.org:8001',
-        // CSS Sourcemaps off by default because relative paths are "buggy"
-        // with this option, according to the CSS-Loader README
-        // (https://github.com/webpack/css-loader#sourcemaps)
-        // In our experience, they generally work as expected,
-        // just be aware of this issue when enabling this option.
-        cssSourceMap: false
-    }
-}
+    host: 'localhost',
+    port: 10000,
+    autoOpenBrowser: true,
+    errorOverlay: true,
+    notifyOnErrors: true,
+    poll: false,
+    useEslint: true,
+    showEslintErrorsInOverlay: false,
+    devtool: 'cheap-module-eval-source-map',
+    cacheBusting: true,
+    cssSourceMap: true
+  },
+  build: {
+    index: path.resolve(__dirname, '../dist/index.html'),
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+    productionSourceMap: false,
+    devtool: '#source-map',
+    productionGzip: true,
+    productionGzipExtensions: ['js', 'css'],
+    bundleAnalyzerReport: process.env.npm_config_report
+  }
+};

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+  <meta name="format-detection" content="telephone=no">
+  <!--设定页面使用的字符集-->
+  <meta http-equiv="content-Type" content="text/html; charset=UTF-8"/>
+  <!--<meta http-equiv="Cache-Control" content="no-transform">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- 在双核浏览器中，让Webkit内核优先渲染 -->
+  <meta name="renderer" content="webkit">
+  <!-- 优先使用 IE 最新版本和 Chrome（激活ChromeFrame谷歌浏览器内嵌框架，是Google推出的一款免费的IE专用插件。用户可以通过IE的用户界面，以Chrome内核的渲染方式浏览网页）-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <!-- 页面作者 -->
+  <meta name="liangxinwei" content="author"/>
+  <!-- uc强制竖屏 -->
+  <meta name="screen-orientation" content="portrait">
+  <!-- QQ强制竖屏 -->
+  <meta name="x5-orientation" content="portrait">
+  <!-- UC强制全屏 -->
+  <meta name="full-screen" content="yes">
+  <!-- QQ强制全屏 -->
+  <meta name="x5-fullscreen" content="true">
+  <!-- UC应用模式 -->
+  <meta name="browsermode" content="application">
+  <!-- QQ应用模式 -->
+  <meta name="x5-page-mode" content="app">
+  <!-- IOS启用 WebApp 全屏模式 -->
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <!-- IOS全屏模式下隐藏状态栏/设置状态栏颜色 content的值为default | black | black-translucent  -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <!-- IOS添加到主屏后的标题 -->
+  <meta name="apple-mobile-web-app-title" content="liangxinwei">
+  <!-- IOS添加智能 App 广告条 Smart App Banner -->
+  <!--<meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">-->
+  <!-- 版权信息 -->
+  <meta name="copyright" content="Copyright © 2017-2018 liangxinwei. All Rights Reserved."/>
+  <!--可以用于设定网页的到期时间。一旦网页过期，必须到服务器上重新传输。-->
+  <meta http-equiv="expires" content="Fri,12Jan202018:18:18GMT">
+  <!--禁止浏览器从本地计算机的缓存中访问页面内容-->
+  <meta http-equiv="Pragma" content="no-cache">
+  <!--显示语言的设定-->
+  <meta http-equiv="Content-Language" content="zh-cn"/>
+  <!-- windows phone 点击无高光 -->
+  <meta name="msapplication-tap-highlight" content="no">
+  <!--百度禁止转码-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!--页面描述内容-->
+  <meta name="description" content="页面描述">
+  <!--定义网页搜索引擎索引方式 none，noindex，nofollow，all，index和follow-->
+  <meta name="robots" content="index,follow">
+  <!--关闭chrome浏览器下翻译插件-->
+  <meta name="google" value="notranslate"/>
+  <meta name="flexible" content="initial-dpr=1, maximum-dpr=1"/>
+  <!--自动将http的不安全请求升级为https-->
+  <!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
+  <title>标题</title>
+  <!-- dns预加载 -->
+  <link rel="dns-prefetch" href="http://at.alicdn.com/">
+  <link rel="icon" href="https://wecash-itopia.oss-cn-beijing.aliyuncs.com/ro-20180814145117573318.jpg" type="image/x-icon" />
+</head>
+<body>
+<div id="app"></div>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+<% var scripts = htmlWebpackPlugin.options.scripts || [] %>
+<% var scriptPrefix = htmlWebpackPlugin.options.scriptPrefix + 'static/js/' %>
+<% for(var i = 0; i < scripts.length; i++) { %>
+<script type="text/javascript" src="<%= scriptPrefix + scripts[i] %>"></script>
+<% } %>
+<% if (htmlWebpackPlugin.options.env === 'dev') { %>
+<script type="text/javascript" src="<%= scriptPrefix + 'vendor.dll.js' %>"></script>
+<% } %>
+</body>
+</html>
