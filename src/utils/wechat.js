@@ -200,7 +200,9 @@ function getUserOpenId(routePath, queryParam, reRequest) {
     console.log('缓存中的 union_id:', existedUnionId, ', 不发请求');
     http.actions.setLoading(store, {status: false});
     user.actions.setUnionId(store, existedUnionId);
-    new EventManager().trigger('onUserInfoReady');
+    setTimeout(() => {
+      new EventManager().trigger('onUserInfoReady');
+    }, 100);
     return;
   }
   const code = Util.getUrlSearchParameter().code;

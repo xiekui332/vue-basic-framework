@@ -21,25 +21,16 @@
       ...mapGetters(['unionId', 'userHadSubscribed'])
     },
     created() {
-      this.initWXSahre();
+      this.initWXShare();
     },
     mounted() {
-      this.requestData();
     },
     beforeDestroy() {
     },
     methods: {
       ...mapActions(['setUserSubscribe', 'setLoading', 'setFirstGame']),
+      // fixme 用 checkUnionId 装饰的组件会自动调用 requestData 用于获取初始数据。
       async requestData() {
-        if (!this.unionId) {
-          this.setLoading({status: true, text: '获取信息中···'});
-          this.$parent.getUserInfo(true);
-        }
-        if (!this.unionId) {
-          this.$toast('请允许授权');
-          this.setLoading({status: false});
-          return;
-        }
         if (this.userHadSubscribed) {
           this.start();
           return;
@@ -57,7 +48,7 @@
       setUnconcernedDialogVisibility(showUnconcernedDialog) {
         this.showUnconcernedDialog = !!showUnconcernedDialog;
       },
-      initWXSahre() {
+      initWXShare() {
         let title = '分享标题';
         let link = `${location.protocol}//${location.host}`;
         let desc = '分享描述';
